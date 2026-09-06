@@ -1,9 +1,11 @@
 import { create } from "zustand";
 
-export const useAuthStore = create((set) => ({
-    accessToken: "",
+const useAuthStore = create((set) => ({
+    accessToken: null,
+    isCheckingAuth: true, // Starts as true when the app first loads
     setAccessToken: (token) => set({ accessToken: token }),
-    clearToken: () => set({ accessToken: "" }),
-}))
+    setCheckingAuth: (status) => set({ isCheckingAuth: status }),
+    logout: () => set({ accessToken: null })
+}));
 
 export default useAuthStore;

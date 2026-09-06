@@ -30,13 +30,35 @@ function AppRoutes() {
                     element={<CustomerLayout />}
                 > */}
                 <Route
-                    path="/"
+                    path="/customer"
                     element={<>Customer</>}
                 />
 
                 {/* </Route> */}
 
             </Route>
+
+            {/* Restaurant Routes */}
+            <Route
+                element={
+                    <ProtectedRoute
+                        allowedRoles={["restaurant"]}
+                    />
+                }
+            >
+
+                {/* <Route
+                    element={<CustomerLayout />}
+                > */}
+                <Route
+                    path="/restaurant"
+                    element={<>Restaurant</>}
+                />
+
+                {/* </Route> */}
+
+            </Route>
+
 
             {/* Admin Route */}
             <Route

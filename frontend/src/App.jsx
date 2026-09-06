@@ -1,16 +1,56 @@
 import AppRoutes from "./routes/AppRoutes";
 import "./styles/login-signup.css";
+import { useEffect } from "react";
+import useAuthStore from "./store/auth-store";
+import userDetails from "./store/user-store";
+
 
 function App() {
+
+  const isCheckingAuth = useAuthStore((state) => state.isCheckingAuth);
+  const setCheckingAuth = useAuthStore((state) => state.setCheckingAuth);
+  const setAccessToken = useAuthStore((state) => state.setAccessToken);
+  const setUser = userDetails((state) => state.setUser);
+
+  useEffect(() => {
+    const verifySession = async () => {
+      try {
+        // This endpoint reads the HttpOnly cookie and returns a new Access Token & User
+        const response = await fetch("http://localhost:8000/refresh", {
+          method: "POST",
+          // IMPORTANT: Tells fetch to include cookies in the request
+          credentials: "include"
+        });
+
+        if (response.ok) {
+          let result = await response.json();
+          setAccessToken(result.accessToken);
+          setUser(result.data);
+        }
+      } catch (error) {
+        console.error("Session expired or no valid cookie found");
+      } finally {
+        // Whether it succeeded or failed, the check is done.
+        setCheckingAuth(false);
+      }
+    };
+
+    verifySession();
+  }, []);
+
+  // BLOCK THE ROUTER FROM RENDERING UNTIL THE CHECK IS DONE
+  if (isCheckingAuth) {
+    return <div style={{ display: "flex", justifyContent: "center" }}>Loading...</div>;
+  }
 
   return (
     <div>
       <h2>Yumazing</h2>
-      <div className="container" style={{ display: "flex", justifyContent: "center" }}>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <AppRoutes />
       </div>
     </div>
   )
 }
 
-export default App
+export default App;

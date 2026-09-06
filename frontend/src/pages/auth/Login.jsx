@@ -2,15 +2,20 @@ import { useState } from "react";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import { useNavigate } from "react-router-dom";
+import useAuthStore from "../../store/auth-store";
+import userDetails from "../../store/user-store";
 
 function LoginPage() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const [formDataError, setFormDataError] = useState({});
     const navigate = useNavigate();
-
+    let setAccessToken = useAuthStore((state) => state.setAccessToken);
+    let setUser = userDetails((state) => state.setUser);
+    let user = userDetails((state) => state.user);
     const validateForm = () => {
 
         let error = {};
@@ -30,8 +35,41 @@ function LoginPage() {
 
     }
 
-    const handleLogin = () => {
+    const handleLogin = async () => {
         if (!validateForm()) return;
+
+        setLoading(true);
+        try {
+            let response = await fetch("http://localhost:8000/login", {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json"
+                },
+                credentials: "include",
+                body: JSON.stringify({ email, password, role: user.role })
+            })
+            if (response.ok) {
+                let result = await response.json();
+                setAccessToken(result.accessToken);
+                setUser(result.data);
+                // 2. Redirect dynamically based on the user's role
+                const role = result.data.role;
+                if (role === 'admin') {
+                    navigate("/admin");
+                } else if (role === 'restaurant') {
+                    navigate("/restaurant");
+                } else if (role === 'partner') {
+                    navigate("/partner");
+                } else {
+                    navigate("/customer");
+                }
+            }
+        } catch (err) {
+            console.error('Error', err);
+        } finally {
+            setLoading(false);
+        }
+
     }
 
     return (
@@ -59,7 +97,7 @@ function LoginPage() {
             </div>
 
             <div className="auth-button">
-                <Button onClick={handleLogin}>
+                <Button disabled={loading} onClick={handleLogin}>
                     Login
                 </Button>
             </div>

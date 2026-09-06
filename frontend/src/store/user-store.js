@@ -1,10 +1,17 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
-export const userDetails = create((set) => ({
-
-    user: null,
-    setUser: (data) => set({ user: data }),
-    clearUserData: () => set({ user: null })
-}))
+const userDetails = create(
+    persist(
+        (set) => ({
+            user: null,
+            setUser: (userData) => set({ user: userData }),
+            clearUser: () => set({ user: null })
+        }),
+        {
+            name: "user-storage",
+        }
+    )
+);
 
 export default userDetails;

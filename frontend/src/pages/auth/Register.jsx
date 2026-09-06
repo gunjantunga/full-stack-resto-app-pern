@@ -4,6 +4,7 @@ import Textarea from "../../components/Textarea";
 import RoleSelect from "../../components/RoleSelect";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import userDetails from "../../store/user-store";
 
 
 function UserSignUp() {
@@ -19,6 +20,8 @@ function UserSignUp() {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [formDataError, setFormDataError] = useState({});
+    let setUser = userDetails((state) => state.setUser);
+
     const validateForm = () => {
 
         let error = {};
@@ -64,9 +67,7 @@ function UserSignUp() {
             [name]: value
         })
     }
-
     const handleSignup = async () => {
-        console.log("called")
         if (!validateForm()) return;
         setLoading(true);
         let body = {
@@ -86,7 +87,6 @@ function UserSignUp() {
                 body: JSON.stringify(body)
             })
             if (response.ok) {
-                console.log('response signup', response);
                 setUserSignupData({
                     name: "",
                     email: '',
@@ -95,6 +95,7 @@ function UserSignUp() {
                     address: "",
                     role: "customer"
                 })
+                setUser({ email: userSignupData.email, role: userSignupData.role })
                 navigate("/login")
             }
         } catch (error) {
@@ -153,7 +154,7 @@ function UserSignUp() {
                 <div className="role-wrapper">
                     <RoleSelect
                         value={userSignupData.role}
-                        onChange={(val) => setUserSignupData(val)}
+                        onChange={handleInputChange}
                     />
                 </div>
 
