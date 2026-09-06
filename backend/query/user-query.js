@@ -8,7 +8,7 @@ export async function findUser(email) {
     let client;
     try {
         client = await pool.connect();
-        const response = await client.query('select id from users where email = $1', [email]);
+        const response = await client.query('select id,email,password_hash,role from users where email = $1', [email]);
         return response.rows;
     } finally {
         if (client) {
