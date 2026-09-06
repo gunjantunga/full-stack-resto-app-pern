@@ -106,79 +106,87 @@ function UserSignUp() {
     }
 
     return (
-        <div className="signup-container">
-            <h2>User Signup</h2>
+        <div className="auth-split-layout">
+            {/* Left Side: 60% Image */}
+            <div className="auth-image-section"></div>
 
-            <div className="signup-form">
+            {/* Right Side: 40% Form */}
+            <div className="auth-form-section">
+                <div className="signup-container">
+                    <h2>User Signup</h2>
 
-                <Input
-                    label="Name"
-                    placeholder="User name"
-                    type="text"
-                    value={userSignupData.name}
-                    name="name"
-                    onChange={handleInputChange}
-                    error={formDataError?.name}
-                />
+                    <div className="signup-form">
+                        <Input
+                            label="Name"
+                            placeholder="User name"
+                            type="text"
+                            value={userSignupData.name}
+                            name="name"
+                            onChange={handleInputChange}
+                            error={formDataError?.name}
+                        />
 
-                <Input
-                    label="Email"
-                    placeholder="Email"
-                    type="email"
-                    value={userSignupData.email}
-                    name="email"
-                    onChange={handleInputChange}
-                    error={formDataError?.email}
-                />
+                        <Input
+                            label="Email"
+                            placeholder="Email"
+                            type="email"
+                            value={userSignupData.email}
+                            name="email"
+                            onChange={handleInputChange}
+                            error={formDataError?.email}
+                        />
 
-                <Input
-                    label="Password"
-                    placeholder="Password"
-                    type="password"
-                    name="password"
-                    value={userSignupData.password}
-                    onChange={handleInputChange}
-                    error={formDataError?.password}
-                />
+                        <Input
+                            label="Password"
+                            placeholder="Password"
+                            type="password"
+                            name="password"
+                            value={userSignupData.password}
+                            onChange={handleInputChange}
+                            error={formDataError?.password}
+                        />
 
-                <Input
-                    label="Phone"
-                    placeholder="Phone no."
-                    type="tel"
-                    name="phone"
-                    value={userSignupData.phone}
-                    onChange={handleInputChange}
-                    error={formDataError?.phone}
-                />
+                        <Input
+                            label="Phone"
+                            placeholder="Phone no."
+                            type="tel"
+                            name="phone"
+                            value={userSignupData.phone}
+                            onChange={handleInputChange}
+                            error={formDataError?.phone}
+                        />
 
-                <div className="role-wrapper">
-                    <RoleSelect
-                        value={userSignupData.role}
-                        onChange={handleInputChange}
-                    />
+                        <div className="role-wrapper">
+                            <RoleSelect
+                                value={userSignupData.role}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+
+                        <div className="address-wrapper">
+                            <Textarea
+                                label="Address"
+                                placeholder="Address"
+                                type="text"
+                                name="address"
+                                value={userSignupData.address}
+                                onChange={handleInputChange}
+                                error={formDataError?.address}
+                            />
+                        </div>
+                    </div>
+
+                    <div className="signup-button">
+                        <Button disabled={loading} onClick={handleSignup}>
+                            Sign Up
+                        </Button>
+                    </div>
+                    <div style={{ textAlign: "center" }}>
+                        <button className="button-link" onClick={() => navigate("/login")}>
+                            Already have account ? Login
+                        </button>
+                    </div>
                 </div>
-
-                <div className="address-wrapper">
-                    <Textarea
-                        label="Address"
-                        placeholder="Address"
-                        type="text"
-                        name="address"
-                        value={userSignupData.address}
-                        onChange={handleInputChange}
-                        error={formDataError?.address}
-                    />
-                </div>
-
-            </div>
-
-            <div className="signup-button">
-                <Button disabled={loading} onClick={handleSignup}>
-                    Sign Up
-                </Button>
-            </div>
-            <div style={{ textAlign: "center" }}>
-                <button className="button-link" onClick={() => navigate("/login")}>Already have account ? Login</button>
             </div>
         </div>
     )

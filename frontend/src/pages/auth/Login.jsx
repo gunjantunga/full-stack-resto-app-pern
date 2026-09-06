@@ -73,36 +73,46 @@ function LoginPage() {
     }
 
     return (
-        <div className="auth-container">
-            <h2>User Login</h2>
+        <div className="auth-split-layout">
+            {/* Left Side: 60% Image */}
+            <div className="auth-image-section"></div>
 
-            <div className="auth-form">
-                <Input
-                    label="Email"
-                    placeholder="Email"
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    error={formDataError?.email}
-                />
+            {/* Right Side: 40% Form */}
+            <div className="auth-form-section">
+                <div className="auth-container">
+                    <h2>User Login</h2>
 
-                <Input
-                    label="Password"
-                    placeholder="Password"
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    error={formDataError?.password}
-                />
-            </div>
+                    <div className="auth-form">
+                        <Input
+                            label="Email"
+                            placeholder="Email"
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            error={formDataError?.email}
+                        />
 
-            <div className="auth-button">
-                <Button disabled={loading} onClick={handleLogin}>
-                    Login
-                </Button>
-            </div>
-            <div style={{ textAlign: "center" }}>
-                <button className="button-link" onClick={() => navigate("/signup")}>Do not have account? Signup</button>
+                        <Input
+                            label="Password"
+                            placeholder="Password"
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            error={formDataError?.password}
+                        />
+                    </div>
+
+                    <div className="auth-button">
+                        <Button disabled={loading} onClick={handleLogin}>
+                            Login
+                        </Button>
+                    </div>
+                    <div style={{ textAlign: "center" }}>
+                        <button className="button-link" onClick={() => navigate("/signup")}>
+                            Do not have account? Signup
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     )

@@ -45,7 +45,6 @@ function App() {
 
   return (
     <div>
-      <h2>Yumazing</h2>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <AppRoutes />
       </div>

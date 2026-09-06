@@ -1,88 +1,147 @@
-.signup-container {
+/* --- SPLIT LAYOUT (60/40 Ratio) --- */
+.auth-split-layout {
+    display: flex;
+    min-height: 100vh;
     width: 100%;
-    max-width: 700px;
-    margin: 20px auto;
-    padding: 30px;
-
-    background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
+.auth-image-section {
+    flex: 6;
+    /* Takes up 60% of the screen */
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+        url("../assets/yumazing-food-bg.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.auth-form-section {
+    flex: 4;
+    /* Takes up 40% of the screen */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    background-color: #f5f7fa;
+    /* Clean, light background for the form side */
+}
+
+/* --- FORM CONTAINERS --- */
+.auth-container {
+    width: 100%;
+    max-width: 420px;
+    padding: 40px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.signup-container {
+    width: 100%;
+    max-width: 650px;
+    padding: 40px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.auth-container h2,
 .signup-container h2 {
     text-align: center;
-    margin: 0 0 30px;
-    font-size: 28px;
-    color: #222;
+    margin: 0 0 25px;
+    font-size: 26px;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+/* --- FORM GRIDS --- */
+.auth-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
 }
 
 .signup-form {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    gap: 20px;
 }
 
-/* Role takes full width */
-.role-wrapper {
-    grid-column: 1 / -1;
-}
-
-/* Address takes full width */
+.role-wrapper,
 .address-wrapper {
     grid-column: 1 / -1;
 }
 
+/* --- BUTTONS & LINKS --- */
+.auth-button,
 .signup-button {
     display: flex;
     justify-content: center;
-    margin-top: 10px;
+    margin-top: 25px;
+    width: 100%;
 }
 
-/* Mobile */
+.auth-button button,
+.signup-button button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: #ff5722;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.auth-button button:hover,
+.signup-button button:hover {
+    background-color: #e64a19;
+}
+
+.button-link {
+    margin-top: 20px;
+    background: transparent;
+    border: none;
+    color: #ff5722;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.button-link:hover {
+    text-decoration: underline;
+}
+
+/* --- RESPONSIVE MOBILE VIEW --- */
+@media (max-width: 900px) {
+    .auth-image-section {
+        display: none;
+        /* Hides image completely on smaller screens */
+    }
+
+    .auth-form-section {
+        flex: 100%;
+        /* Form takes full width */
+    }
+}
+
 @media (max-width: 600px) {
+
+    .auth-container,
     .signup-container {
-        margin: 20px;
-        padding: 20px;
+        padding: 25px;
     }
 
     .signup-form {
         grid-template-columns: 1fr;
+        /* Stacks signup inputs vertically */
     }
 
     .role-wrapper,
     .address-wrapper {
         grid-column: auto;
     }
-}
-
-.auth-container {
-    width: 100%;
-    max-width: 450px;
-    margin: 10px auto;
-    padding: 32px;
-
-    background: #fff;
-    border-radius: 12px;
-
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-}
-
-.auth-container h2 {
-    text-align: center;
-    margin: 0 0 30px;
-
-    font-size: 28px;
-    color: #222;
-}
-
-.auth-form {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 10px;
-}
-
-.auth-button {
-    display: flex;
-    justify-content: center;
-    margin-top: 25px;
 }
