@@ -6,11 +6,30 @@ import { findUser, createUser } from "./query/user-query.js";
 import bcrypt from "bcrypt";
 import { generateJWT, verifyJWT } from './jwt.js';
 import cookieParser from "cookie-parser";
+import { findOwner, createRestaurant } from "./query/restaurant-query.js";
+import multer from "multer"
+import path from "path"
 
 const app = express();
 app.use(cors({ origin: "http://localhost:5173", credentials: true }))
 app.use(express.json());
 app.use(cookieParser());
+
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/'); // Ensure this folder exists in your project root
+    },
+    filename: function (req, file, cb) {
+        // Create a unique filename (e.g., 1693829384-restaurant.png)
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        cb(null, uniqueSuffix + path.extname(file.originalname));
+    }
+});
+
+const upload = multer({ storage: storage });
+app.use('/uploads', express.static('uploads'));
+
 const port = 8000;
 
 app.get('/', async (req, res) => {
@@ -143,6 +162,54 @@ app.post("/refresh", (req, res) => {
         res.status(400).json({ message: "Token not found" });
     }
 })
+
+
+app.get("/admin/restaurant-owners", async (req, res) => {
+    try {
+        const { search = "" } = req.query;
+
+        const owners = await findOwner(search);
+
+        return res.status(200).json({
+            success: true,
+            data: owners
+        });
+
+    } catch (error) {
+        console.error("Error fetching restaurant owners:", error);
+
+        return res.status(500).json({
+            success: false,
+            message: "Failed to fetch restaurant owners"
+        });
+    }
+});
+
+app.post('/admin/restaurant', upload.single('image'), async (req, res) => {
+    try {
+        // Multer parses text fields into req.body
+        const { name, owner_id, address } = req.body;
+
+        // Multer parses the file into req.file
+        // Generate the URL pathway that the frontend will use to fetch the image
+        const image_url = req.file ? `/uploads/${req.file.filename}` : null;
+
+        // 3. Insert into PostgreSQL
+
+        let result = await createRestaurant({ name, owner_id, address, image_url })
+
+        res.status(201).json({
+            success: true,
+            message: "Restaurant created successfully",
+            data: result
+        });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, message: "Server error" });
+    }
+});
+
 
 app.listen(port, () => {
     console.log(`Server started at port ${port}`);

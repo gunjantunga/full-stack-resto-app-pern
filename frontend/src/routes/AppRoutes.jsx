@@ -3,7 +3,7 @@ import LoginPage from "../pages/auth/Login";
 import UserSignUp from "../pages/auth/Register";
 import ProtectedRoute from "./ProtectedRoutes";
 import AdminLayout from "../layouts/AdminLayout";
-
+import AddNewRestaurant from "../pages/restaurants/AddNewRestaurant";
 function AppRoutes() {
 
     return (
@@ -77,6 +77,10 @@ function AppRoutes() {
                     <Route
                         path="/admin"
                         element={<>Admin</>}
+                    />
+                    <Route
+                        path="/admin/restaurants"
+                        element={<><AddNewRestaurant /></>}
                     />
 
                 </Route>

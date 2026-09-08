@@ -9,7 +9,7 @@ const AdminLayout = () => {
             <AdminSidebar />
             <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
                 <AdminHeader />
-                <main style={{ marginLeft: '260px', padding: '24px', flex: 1 }}>
+                <main className='admin-main-content'>
                     <Outlet />
                 </main>
             </div>

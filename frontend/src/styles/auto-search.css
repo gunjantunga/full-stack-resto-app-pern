@@ -1,0 +1,84 @@
+/* Wrapper to keep the dropdown positioned relative to the input */
+.combobox-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 24rem;
+    /* 384px */
+    font-family: inherit;
+}
+
+/* The search input field */
+.combobox-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.5rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.combobox-input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+/* Positioning for the loading spinner */
+.combobox-spinner-wrapper {
+    position: absolute;
+    right: 0.75rem;
+    top: 0.75rem;
+}
+
+/* CSS animation for the spinner */
+.combobox-spinner {
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid #3b82f6;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: combobox-spin 1s linear infinite;
+}
+
+@keyframes combobox-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* The dropdown menu container */
+.combobox-dropdown {
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    margin: 0.25rem 0 0 0;
+    padding: 0;
+    list-style: none;
+    background-color: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    max-height: 15rem;
+    overflow-y: auto;
+}
+
+/* Individual list items */
+.combobox-option {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.combobox-option:hover {
+    background-color: #eff6ff;
+    color: #1d4ed8;
+}
+
+/* Styling when no results are found */
+.combobox-no-results {
+    padding: 0.5rem 1rem;
+    color: #6b7280;
+    font-style: italic;
+}

@@ -42,10 +42,10 @@ function App() {
 
   return (
     <div>
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <ToastSetup />
-        <AppRoutes />
-      </div>
+      {/* <div style={{ display: "flex", justifyContent: "center" }}> */}
+      <ToastSetup />
+      <AppRoutes />
+      {/* </div> */}
     </div>
   )
 }

@@ -1,0 +1,39 @@
+.add-restaurant-container {
+    max-width: 700px;
+    background-color: #ffffff;
+    padding: 32px;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.add-restaurant-header {
+    margin-bottom: 24px;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 16px;
+}
+
+.add-restaurant-title {
+    margin: 0;
+    color: #ff5722;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.add-restaurant-subtitle {
+    margin: 8px 0 0 0;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.add-restaurant-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.add-restaurant-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 16px;
+}

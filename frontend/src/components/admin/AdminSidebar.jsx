@@ -14,7 +14,7 @@ import "../../styles/admin-style.css";
 
 const AdminSidebar = () => {
     const menuItems = [
-        { path: '/admin/dashboard', name: 'Dashboard', icon: <LayoutDashboard size={20} /> },
+        { path: '/admin', name: 'Dashboard', icon: <LayoutDashboard size={20} /> },
         { path: '/admin/restaurants', name: 'Restaurants', icon: <Store size={20} /> },
         { path: '/admin/partners', name: 'Partners', icon: <Users size={20} /> },
         { path: '/admin/menu', name: 'Menu', icon: <BookOpen size={20} /> },
@@ -35,6 +35,7 @@ const AdminSidebar = () => {
                         <li key={item.name} className="nav-item">
                             <NavLink
                                 to={item.path}
+                                end={item.path === '/admin'}
                                 className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}
                             >
                                 <span className="nav-icon">{item.icon}</span>

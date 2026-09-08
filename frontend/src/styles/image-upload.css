@@ -1,0 +1,90 @@
+/* Container for the drag/click area */
+.image-upload-area {
+    border: 2px dashed #d1d5db;
+    border-radius: 8px;
+    padding: 24px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #f9fafb;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 150px;
+}
+
+.image-upload-area:hover {
+    border-color: #9ca3af;
+    background-color: #f3f4f6;
+}
+
+/* Red border if there is an error */
+.image-upload-area.input-error {
+    border-color: #ef4444;
+    background-color: #fef2f2;
+}
+
+/* Hidden file input */
+.image-upload-input {
+    display: none;
+}
+
+/* Wrapper for the preview image */
+.image-preview-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.image-preview-img {
+    max-height: 200px;
+    border-radius: 6px;
+    object-fit: cover;
+    display: block;
+}
+
+/* Remove 'X' button */
+.image-remove-btn {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.2s;
+}
+
+.image-remove-btn:hover {
+    background-color: #dc2626;
+}
+
+/* Placeholder text when no image is selected */
+.image-placeholder {
+    color: #6b7280;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+}
+
+.image-placeholder-icon {
+    font-size: 24px;
+}
+
+.image-placeholder-title {
+    margin: 0;
+    font-weight: 500;
+}
+
+.image-placeholder-subtitle {
+    font-size: 12px;
+}
