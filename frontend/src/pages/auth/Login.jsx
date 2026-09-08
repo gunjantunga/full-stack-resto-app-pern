@@ -4,6 +4,7 @@ import Button from "../../components/Button";
 import { useNavigate } from "react-router-dom";
 import useAuthStore from "../../store/auth-store";
 import userDetails from "../../store/user-store";
+import { notify } from "../../components/Toast/ToastConfig";
 
 function LoginPage() {
 
@@ -63,6 +64,10 @@ function LoginPage() {
                 } else {
                     navigate("/customer");
                 }
+            }
+            if (!response.ok) {
+                let result = await response.json();
+                notify.error(result.message)
             }
         } catch (err) {
             console.error('Error', err);

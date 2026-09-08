@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import LoginPage from "../pages/auth/Login";
 import UserSignUp from "../pages/auth/Register";
 import ProtectedRoute from "./ProtectedRoutes";
+import AdminLayout from "../layouts/AdminLayout";
 
 function AppRoutes() {
 
@@ -69,16 +70,16 @@ function AppRoutes() {
                 }
             >
 
-                {/* <Route
-                    element={<AdminLayout />}
-                > */}
-
                 <Route
-                    path="/admin"
-                    element={<>Admin</>}
-                />
+                    element={<AdminLayout />}
+                >
 
-                {/* </Route> */}
+                    <Route
+                        path="/admin"
+                        element={<>Admin</>}
+                    />
+
+                </Route>
 
             </Route>
 

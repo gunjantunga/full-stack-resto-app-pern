@@ -5,7 +5,7 @@ import RoleSelect from "../../components/RoleSelect";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import userDetails from "../../store/user-store";
-
+import { notify } from "../../components/Toast/ToastConfig";
 
 function UserSignUp() {
 
@@ -97,6 +97,10 @@ function UserSignUp() {
                 })
                 setUser({ email: userSignupData.email, role: userSignupData.role })
                 navigate("/login")
+            }
+            if (!response.ok) {
+                let result = await response.json();
+                notify.error(result.message)
             }
         } catch (error) {
             console.error(error);

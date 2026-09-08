@@ -1,0 +1,218 @@
+/* Core Variables based on Yumazing Logo */
+:root {
+    --primary-orange: #ff5722;
+    --primary-orange-hover: #e64a19;
+    --dark-text: #1a1a1a;
+    --gray-text: #6b7280;
+    --light-bg: #f9fafb;
+    --sidebar-width: 260px;
+    --header-height: 70px;
+    --border-color: #e5e7eb;
+}
+
+/* ================== SIDEBAR STYLES ================== */
+.admin-sidebar {
+    width: var(--sidebar-width);
+    height: 100vh;
+    background-color: #ffffff;
+    border-right: 1px solid var(--border-color);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+}
+
+.sidebar-logo-container {
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.sidebar-logo {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+}
+
+.sidebar-nav {
+    flex: 1;
+    padding: 24px 16px;
+    overflow-y: auto;
+}
+
+.nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    text-decoration: none;
+    color: var(--gray-text);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.nav-link:hover {
+    background-color: var(--light-bg);
+    color: var(--dark-text);
+}
+
+.nav-link.active {
+    background-color: #fff0eb;
+    /* Light orange tint */
+    color: var(--primary-orange);
+}
+
+.nav-icon {
+    margin-right: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-footer {
+    padding: 16px;
+    border-top: 1px solid var(--border-color);
+}
+
+.logout-btn {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 12px 16px;
+    background: none;
+    border: none;
+    color: var(--gray-text);
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.logout-btn:hover {
+    background-color: #fee2e2;
+    color: #ef4444;
+}
+
+.logout-btn span {
+    margin-left: 12px;
+}
+
+/* ================== HEADER STYLES ================== */
+.admin-header {
+    height: var(--header-height);
+    background-color: #ffffff;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32px;
+    /* Margin left to make room for fixed sidebar */
+    margin-left: var(--sidebar-width);
+}
+
+.header-left .search-bar {
+    display: flex;
+    align-items: center;
+    background-color: var(--light-bg);
+    border-radius: 24px;
+    padding: 8px 16px;
+    width: 350px;
+    border: 1px solid var(--border-color);
+}
+
+.search-icon {
+    color: var(--gray-text);
+    margin-right: 8px;
+}
+
+.search-bar input {
+    border: none;
+    background: transparent;
+    outline: none;
+    width: 100%;
+    font-size: 14px;
+    color: var(--dark-text);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--gray-text);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-btn:hover {
+    color: var(--primary-orange);
+}
+
+.notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: var(--primary-orange);
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+}
+
+.avatar {
+    height: 36px;
+    width: 36px;
+    background-color: #fff0eb;
+    color: var(--primary-orange);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--dark-text);
+}
+
+.profile-role {
+    font-size: 12px;
+    color: var(--gray-text);
+}

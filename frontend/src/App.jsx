@@ -3,7 +3,7 @@ import "./styles/login-signup.css";
 import { useEffect } from "react";
 import useAuthStore from "./store/auth-store";
 import userDetails from "./store/user-store";
-
+import { ToastSetup } from "./components/Toast/ToastConfig";
 
 function App() {
 
@@ -15,10 +15,8 @@ function App() {
   useEffect(() => {
     const verifySession = async () => {
       try {
-        // This endpoint reads the HttpOnly cookie and returns a new Access Token & User
         const response = await fetch("http://localhost:8000/refresh", {
           method: "POST",
-          // IMPORTANT: Tells fetch to include cookies in the request
           credentials: "include"
         });
 
@@ -30,7 +28,6 @@ function App() {
       } catch (error) {
         console.error("Session expired or no valid cookie found");
       } finally {
-        // Whether it succeeded or failed, the check is done.
         setCheckingAuth(false);
       }
     };
@@ -46,6 +43,7 @@ function App() {
   return (
     <div>
       <div style={{ display: "flex", justifyContent: "center" }}>
+        <ToastSetup />
         <AppRoutes />
       </div>
     </div>
